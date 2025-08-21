@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Queue Management System</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+      color: #2f3640;
+    }
+    header {
+      background: #273c75;
+      color: #fff;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    nav a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+      color: white;
+      background: linear-gradient(to right, #00a8ff, #0097e6);
+    }
+    .hero h2 {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    .hero button {
+      padding: 12px 24px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #273c75;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .hero button:hover {
+      background: #192a56;
+    }
+    .features {
+      display: flex;
+      justify-content: space-around;
+      padding: 60px 20px;
+      flex-wrap: wrap;
+    }
+    .feature {
+      background: #fff;
+      border-radius: 12px;
+      padding: 30px;
+      margin: 10px;
+      width: 250px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .feature h3 {
+      margin-bottom: 15px;
+      color: #0097e6;
+    }
+    footer {
+      background: #273c75;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 16px;
+      width: 350px;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      animation: fadeIn 0.3s ease;
+    }
+    .modal-content h2 {
+      margin-bottom: 20px;
+      color: #273c75;
+    }
+    .modal-content .field {
+      margin-bottom: 15px;
+    }
+    .modal-content input {
+      width: 90%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      outline: none;
+      transition: 0.3s;
+    }
+    .modal-content input:focus {
+      border-color: #0097e6;
+      box-shadow: 0 0 8px rgba(0,151,230,0.3);
+    }
+    .modal-content button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(90deg, #0097e6, #273c75);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .modal-content button:hover {
+      background: linear-gradient(90deg, #273c75, #0097e6);
+    }
+    .modal-content p {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+    .modal-content a {
+      color: #0097e6;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .close {
+      float: right;
+      font-size: 22px;
+      cursor: pointer;
+      color: #e84118;
+    }
+    @keyframes fadeIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>DQMS</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Book Token</a>
+      <a href="#">Check Status</a>
+      <a href="#">Contact</a>
+      <a onclick="openModal('loginModal')">Sign In</a>
+      <a onclick="openModal('registerModal')">Register</a>
+      <a onclick="openModal('adminModal')">Admin Login</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Digital Queue Management System</h2>
+    <p>Book your token, skip the line, and save time with our smart queue solution.</p>
+    <button onclick="location.href='#'">Book Token</button>
+    <button onclick="location.href='#'">Check Status</button>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="feature">
+      <h3>📋 Easy Queueing</h3>
+      <p>Book tokens online without standing in physical lines.</p>
+    </div>
+    <div class="feature">
+      <h3>⏱ Real-time Updates</h3>
+      <p>Track your queue position live and get instant notifications.</p>
+    </div>
+    <div class="feature">
+      <h3>📲 Smart Alerts</h3>
+      <p>Get reminders when your turn is near to avoid waiting.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Digital Queue Management System | All Rights Reserved</p>
+  </footer>
+
+  <!-- Sign In Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('loginModal')">&times;</span>
+      <h2>🔑 Sign In</h2>
+      <div class="field">
+        <input type="email" id="userEmail" placeholder="📧 Email" required>
+      </div>
+      <div class="field">
+        <input type="password" id="userPass" placeholder="🔒 Password" required>
+      </div>
+      <button onclick="userLogin()">Login</button>
+      <p>Don't have an account? 
+        <a onclick="closeModal('loginModal'); openModal('registerModal');">Register</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div id="registerModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('registerModal')">&times;</span>
+      <h2>📝 Register</h2>
+      <div class="field">
+        <input type="text" placeholder="👤 Full Name" required>
+      </div>
+      <div class="field">
+        <input type="email" placeholder="📧 Email" required>
+      </div>
+      <div class="field">
+        <input type="text" placeholder="⚡ Username" required>
+      </div>
+      <div class="field">
+        <input type="password" placeholder="🔒 Password" required>
+      </div>
+      <button>Create Account</button>
+      <p>Already have an account? 
+        <a onclick="closeModal('registerModal'); openModal('loginModal');">Sign In</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Admin Login Modal -->
+  <div id="adminModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('adminModal')">&times;</span>
+      <h2>🛠️ Admin Login</h2>
+      <div class="field">
+        <input type="text" id="adminUser" placeholder="👨‍💼 Admin Username" required>
+      </div>
+      <div class="field">
+        <input type="password" id="adminPass" placeholder="🔒 Admin Password" required>
+      </div>
+      <button onclick="adminLogin()">Login as Admin</button>
+    </div>
+  </div>
+
+  <script>
+    function openModal(id) {
+      document.getElementById(id).style.display = "flex";
+    }
+    function closeModal(id) {
+      document.getElementById(id).style.display = "none";
+    }
+    window.onclick = function(event) {
+      if (event.target.classList.contains("modal")) {
+        event.target.style.display = "none";
+      }
+    }
+
+    // ✅ Admin Login Function
+    function adminLogin() {
+      const user = document.getElementById("adminUser").value;
+      const pass = document.getElementById("adminPass").value;
+
+      // Simple check (replace with PHP/MySQL later)
+      if (user === "admin" && pass === "1234") {
+        window.location.href = "admindashboard.html"; // Redirect to Admin Dashboard
+      } else {
+        alert("❌ Invalid admin credentials");
+      }
+    }
+
+    // ✅ User Login Function
+    function userLogin() {
+      const email = document.getElementById("userEmail").value;
+      const pass = document.getElementById("userPass").value;
+
+      // Simple check (replace with PHP/MySQL later)
+      if (email === "user@test.com" && pass === "1234") {
+        window.location.href = "userdashboard.html"; // Redirect to User Dashboard
+      } else {
+        alert("❌ Invalid user credentials");
+      }
+    }
+  </script>
+
+</body>
+</html>

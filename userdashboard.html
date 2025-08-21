@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+      margin: 0;
+      color: #2f3640;
+    }
+    header {
+      background: #273c75;
+      color: #fff;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+    }
+    header button {
+      background: #e84118;
+      border: none;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    header button:hover {
+      background: #c23616;
+    }
+    .content {
+      padding: 30px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .card h2 {
+      margin-top: 0;
+      color: #0097e6;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      margin-top: 10px;
+    }
+    .token-list {
+      margin-top: 15px;
+    }
+    .token {
+      background: #dcdde1;
+      padding: 12px;
+      border-radius: 6px;
+      margin: 8px 0;
+    }
+    .edit-btn {
+      margin-top: 10px;
+      background: #44bd32;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .edit-btn:hover {
+      background: #27ae60;
+    }
+    .save-btn {
+      margin-top: 10px;
+      background: #273c75;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .save-btn:hover {
+      background: #192a56;
+    }
+    footer {
+      background: #273c75;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+    input.edit-field {
+      display: block;
+      width: 95%;
+      margin: 6px 0;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>👤 User Dashboard</h1>
+    <button onclick="logout()">🚪 Logout</button>
+  </header>
+
+  <!-- Main Content -->
+  <div class="content">
+    
+    <!-- User Information -->
+    <div class="card" id="userInfoCard">
+      <h2>📌 User Information</h2>
+      <p><strong>Name:</strong> <span id="userName">user</span></p>
+      <p><strong>Email:</strong> <span id="userEmail">user@gmail.com</span></p>
+      <p><strong>Username:</strong> <span id="userUsername">user123</span></p>
+      <button class="edit-btn" onclick="editInfo()">✏️ Edit</button>
+    </div>
+
+    <!-- Search Option -->
+    <div class="card search-box">
+      <h2>🔍 Search</h2>
+      <input type="text" placeholder="Search your tokens or services...">
+    </div>
+
+    <!-- Token Status -->
+    <div class="card">
+      <h2>🎫 My Tokens</h2>
+      <div class="token">Token #101 - Pending</div>
+      <div class="token">Token #95 - Completed</div>
+    </div>
+
+    <!-- Support Option -->
+    <div class="card">
+      <h2>💬 Support</h2>
+      <p>If you face any issues, contact us at <strong>support@dqms.com</strong></p>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Digital Queue Management System | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    function logout() {
+      alert("You have been logged out!");
+      window.location.href = "ak.html"; // back to homepage
+    }
+
+    function editInfo() {
+      let name = document.getElementById("userName").innerText;
+      let email = document.getElementById("userEmail").innerText;
+      let username = document.getElementById("userUsername").innerText;
+
+      document.getElementById("userInfoCard").innerHTML = `
+        <h2>📌 Edit Information</h2>
+        <input class="edit-field" id="editName" type="text" value="${name}">
+        <input class="edit-field" id="editEmail" type="email" value="${email}">
+        <input class="edit-field" id="editUsername" type="text" value="${username}">
+        <button class="save-btn" onclick="saveInfo()">💾 Save</button>
+      `;
+    }
+
+    function saveInfo() {
+      let newName = document.getElementById("editName").value;
+      let newEmail = document.getElementById("editEmail").value;
+      let newUsername = document.getElementById("editUsername").value;
+
+      document.getElementById("userInfoCard").innerHTML = `
+        <h2>📌 User Information</h2>
+        <p><strong>Name:</strong> <span id="userName">${newName}</span></p>
+        <p><strong>Email:</strong> <span id="userEmail">${newEmail}</span></p>
+        <p><strong>Username:</strong> <span id="userUsername">${newUsername}</span></p>
+        <button class="edit-btn" onclick="editInfo()">✏️ Edit</button>
+      `;
+    }
+  </script>
+</body>
+</html>
